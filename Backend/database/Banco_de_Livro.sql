@@ -9,6 +9,4 @@ INSERT INTO tbl_categoria (nome_categoria, createdAt, updatedAt) VALUES ('Distop
 INSERT INTO tbl_categoria (nome_categoria, createdAt, updatedAt) VALUES ('Infantil', now(), now());
 INSERT INTO tbl_categoria (nome_categoria, createdAt, updatedAt) VALUES ('Suspense', now(), now());
 
-
-select * from tbl_livros;
-
+select * from tbl_livro

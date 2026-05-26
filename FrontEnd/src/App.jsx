@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Container from './components/layout/Container'
+import Container from './components/layout/Container/Container.jsx';
 
 /* IMPORTS DOS COMPONENTES DE PÁGINAS */
 import Home from './components/pages/Home/Home.jsx'
@@ -11,7 +11,7 @@ import UpdateBooks from './Components/Pages/UpdateBook/UpdateBooks.jsx'
 import DeleteBook from './Components/Pages/DeleteBook/DeleteBook.jsx'
 
 /* IMPORTAÇÃO DO NAVBAR */
-import NavBar from '../src/Components/Layout/NavBar.jsx'
+import NavBar from '../src/Components/Layout/NavBar/NavBar.jsx';
 
 
 function App() {

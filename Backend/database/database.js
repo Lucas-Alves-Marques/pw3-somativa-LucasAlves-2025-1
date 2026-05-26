@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Sequelize = require('sequelize');
 
 /***** CRIA A CONEXÃO COMO BANCO DE DADOS *****/
@@ -13,13 +14,18 @@ PARAMETROS DO SEQUELIZE
     4.4 - DEFINE O FUSO HORARIO LOCAL
 */
 const connection = new Sequelize(
-    'bd_libri_api',
-    'root',
-    'etecembu@123',
+    // 'bd_libri_api',
+    // 'root',
+    // 'etecembu@123',
     // '',
+    'bd_libri_api',
+    `${process.env.DATABASE_USER}`,
+    `${process.env.DATABASE_PASSWORD}`,
+    // '',
+
     {
-        host: 'localhost',
-        port: '3306',
+        host:`${process.env.DATABASE_HOST}`,
+        port: `${process.env.DATABASE_PORT}`,
         dialect: 'mysql',
         timezone: '-03:00'
     }

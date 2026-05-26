@@ -7,20 +7,18 @@
 
 .form_control label{
     padding: .7em;
-    border-radius: 0;
     border: none;
     color: #ffffff;
     font-weight: bold;
 }
 
 .form_control select{
-    width: 520px;
-    padding: 5px;
+    width: 100%;
+    padding: 10px 5px;
     border-radius: 0;
     border: none;
-    background-color: #d4d4d4;
-    border-radius: 2vh;
-    height: 50px;
+    background-color: #ffffff;
+    border-radius: 10px;
     text-align: start;
 }
 

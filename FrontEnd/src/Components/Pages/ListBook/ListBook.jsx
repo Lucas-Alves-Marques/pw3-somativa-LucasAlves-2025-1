@@ -6,7 +6,7 @@ import Style from './ListBook.module.css'
 import ladraoRaios from '../../../assets/Ladrao_de_Raios.jpg';
 import BookCard from "../../BookCard/BookCard";
 
-import Conteiner from '../../Layout/ContainerBook'
+import Conteiner from '../../Layout/Container/ContainerBook'
 
 
 const ListBook = () => {

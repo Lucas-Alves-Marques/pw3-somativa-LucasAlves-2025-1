@@ -1,19 +1,37 @@
-import React from 'react'
-import styles from './Home.module.css';
+import { GiOpenBook as IconBook } from "react-icons/gi";
+import { Link } from "react-router-dom";
+import { FaList as IconList } from "react-icons/fa6";
+import styles from "./Home.module.css";
+import React from "react";
 
 const Home = () => {
-    return (
-
-        <section className={styles.home_container}>
-            <div>
-                <h1>Bem vindo ao WEB APP<span>LIBRI</span></h1>
-                <p>Comece a gerenciar os seus livros agora mesmo!</p>
-                <img className='book_home' src="./book_home.jpg" alt="" />
+  return (
+    <section className={styles.home_container}>
+      <div className={styles.welcome}>
+        <div className={styles.title}>
+          <p>Bem-Vindo ao</p>
+          <h1>
+            Web App <span>Libri</span>
+          </h1>
+        </div>
+        <div className={styles.buttons}>
+          <Link to="/newBook">
+            <div className={styles.register}>
+              <IconBook />
+              <p>Cadastrar</p>
             </div>
-
-        </section>
-
-    );
-}
+          </Link>
+          <Link to="/listBook">
+            <div className={styles.list}>
+              <IconList />
+              <p>Biblioteca</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+      <img className="book_home" src="./book_home.png" alt="" />
+    </section>
+  );
+};
 
 export default Home;
