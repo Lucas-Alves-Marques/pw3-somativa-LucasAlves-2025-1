@@ -1,0 +1,10 @@
+body{
+    background-image: url("./src/Img/livraria.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(0.2vh);
+    background-blend-mode: overlay;
+    
+}

@@ -1,0 +1,32 @@
+.bookCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(6, 50, 80, 0.63);
+    backdrop-filter: blur(2px); 
+    padding: 2vh; 
+    text-align: center;
+    border-radius: 2vh;
+    color: white;
+    border: 0.2vh solid white;
+    text-align: center;
+    margin: 2vh 8vh;
+    height: 35vh;
+    width: 25vh;
+}
+
+.titulo{
+    font-size: 2vh;
+    margin-bottom: 1vh;
+}
+
+.autor{
+    font-size: 1.5vh;
+}
+
+img{
+    width: 12vh;
+    border-radius: 2vh;
+    margin: 2vh 0;
+}
+

@@ -1,0 +1,29 @@
+.body {
+    text-align: center;
+
+}
+
+.body h1 {
+    margin: 2vh 0;
+    color: white;
+    font-size: 5vh;
+}
+
+.NotBook {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.NotBook h1 {
+    color: white;
+    font-size: 4vh;
+    background-color: rgba(6, 50, 80, 0.63);
+    backdrop-filter: blur(2px);
+    padding: 5vh;
+    border-radius: 2vh;
+    border: 0.5vh solid white;
+    width: 40vh;
+    text-align: center;
+}
