@@ -13,7 +13,10 @@ const CreateBook = () => {
 
   const [categories, setCategories] = useState([]);
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({
+    text: "",
+    action: () => {}
+  });
 
   const navigate = useNavigate();
 
@@ -28,31 +31,45 @@ const CreateBook = () => {
     });
   };
 
+  const clearMessage = () => {
+    setMessage({
+      text: "",
+      action: () => {}
+    });
+  };
+
   const submit = e => {
     e.preventDefault();
 
-    setMessage("Livro Cadastrado");
+    fetch("http://127.0.0.1:5000/inserirLivro", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*"
+      },
+      body: JSON.stringify(book)
+    })
+      .then(resp => {
+        if (!resp.ok) throw new Error("Não foi possivel cadastrar o livro");
 
-    // fetch("http://127.0.0.1:5000/inserirLivro", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Headers": "*"
-    //   },
-    //   body: JSON.stringify(book)
-    // })
-    //   .then(resp => resp.json())
-    //   .then(() => {
-    //     setMessage("Livro Cadastrado");
-    //   })
-    //   .catch(erro => {
-    //     console.log("Erro: " + erro);
+        return resp.json();
+      })
+      .then(() => {
+        setMessage({
+          text: "Livro Cadastrado",
+          action: () => navigate("/listBook")
+        });
+      })
+      .catch(erro => {
+        console.log("Erro: " + erro);
 
-    //     setMessage("Erro ao Cadastrar Livro");
-    //   });
-
+        setMessage({
+          text: "Erro ao Cadastrar Livro",
+          action: () => clearMessage()
+        });
+      });
   };
 
   useEffect(() => {
@@ -86,7 +103,7 @@ const CreateBook = () => {
         <div className={style.main}>
           <div className={style.left}>
             <img src="./book_image2.jpg" alt="" />
-            <Button label="Salvar" onClick={submit}/>
+            <Button label="Salvar" onClick={submit} />
           </div>
           <div className={style.inputs}>
             <Input
@@ -125,25 +142,7 @@ const CreateBook = () => {
         </div>
       </form>
 
-      {message && (
-        // <div className={style.message}>
-        //   <p>{message}</p>
-        //   <button
-        //     onClick={() => {
-        //       setMessage("");
-        //       navigate("/listBook");
-        //     }}
-        //   >
-        //     {" "}
-        //     OK{" "}
-        //   </button>
-        // </div>
-        <MessageAlert 
-          message={message}
-          onClick={() => setMessage('')}
-        />
-
-      )}
+      {message.text && <MessageAlert message={message.text} onClick={message.action} />}
     </section>
   );
 };
