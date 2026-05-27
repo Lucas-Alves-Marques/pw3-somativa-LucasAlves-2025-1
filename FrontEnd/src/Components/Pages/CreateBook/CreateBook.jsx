@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import style from "./Createbooks.module.css";
-import { useNavigate } from "react-router-dom";
-
-import Input from "../../Form/Input/Input";
-import Select from "../../Form/Select/Select";
+import { GiOpenBook as IconBook } from "react-icons/gi";
+import { Select2 } from "../../Form/Select/Select2.jsx";
+import { LineTitle } from "./LineTitle/LineTitle.jsx";
 import Button from "../CreateBook/Button/Button.jsx";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import style from "./Createbooks.module.css";
+import Input from "../../Form/Input/Input";
+import { MessageAlert } from "../../Message/Message.jsx";
 
 const CreateBook = () => {
   const [book, setBook] = useState([]);
@@ -19,17 +21,38 @@ const CreateBook = () => {
     setBook({ ...book, [e.target.name]: e.target.value });
   };
 
-  const handleChangeCategory = e => {
+  const handleChangeCategory = cod_cate => {
     setBook({
       ...book,
-      cod_categoria: e.target.options[e.target.selectedIndex].value
+      cod_categoria: cod_cate
     });
   };
 
   const submit = e => {
     e.preventDefault();
 
-    insertBook(book);
+    setMessage("Livro Cadastrado");
+
+    // fetch("http://127.0.0.1:5000/inserirLivro", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Headers": "*"
+    //   },
+    //   body: JSON.stringify(book)
+    // })
+    //   .then(resp => resp.json())
+    //   .then(() => {
+    //     setMessage("Livro Cadastrado");
+    //   })
+    //   .catch(erro => {
+    //     console.log("Erro: " + erro);
+
+    //     setMessage("Erro ao Cadastrar Livro");
+    //   });
+
   };
 
   useEffect(() => {
@@ -50,98 +73,76 @@ const CreateBook = () => {
       });
   }, []);
 
-  const insertBook = book => {
-    fetch("http://127.0.0.1:5000/inserirLivro", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*"
-      },
-      body: JSON.stringify(book)
-    })
-      .then(resp => resp.json())
-      .then(() => {
-        setMessage("Livro Cadastrado");
-      })
-      .catch(erro => {
-        console.log("Erro: " + erro);
-
-        setMessage("Erro ao Cadastrar Livro");
-      });
-  };
-
   return (
     <section className={style.create_book_container}>
-      <form className={message && style.alertMessage} onSubmit={submit}>
-        <h1>CADASTRO DE LIVROS</h1>
-
+      <form>
+        <div className={style.title}>
+          <div className={style.titleDiv}>
+            <IconBook />
+            <h1>CADASTRO DE LIVROS</h1>
+          </div>
+          <LineTitle />
+        </div>
         <div className={style.main}>
           <div className={style.left}>
             <img src="./book_image2.jpg" alt="" />
-            <Button label="Cadastrar Livro" />
+            <Button label="Salvar" onClick={submit}/>
           </div>
-
           <div className={style.inputs}>
-            <div>
-              <h1>Livro:</h1>
-              <Input
-                type="text"
-                name="nome_livro"
-                id="nome_livro"
-                placeholder="Digite o nome do livro"
-                action={handleBook}
-              />
-            </div>
-            <div>
-              <h1>Autor:</h1>
-              <Input
-                type="text"
-                name="autor_livro"
-                id="autor_livro"
-                placeholder="Digite o nome do autor"
-                action={handleBook}
-              />
-            </div>
-            <div>
-              <h1>Descrição:</h1>
+            <Input
+              text="Livro:"
+              type="text"
+              name="nome_livro"
+              id="nome_livro"
+              placeholder="Digite o nome do livro"
+              action={handleBook}
+            />
+            <Input
+              text="Autor:"
+              type="text"
+              name="autor_livro"
+              id="autor_livro"
+              placeholder="Digite o nome do autor"
+              action={handleBook}
+            />
+            <Select2
+              name="cod_categoria"
+              text="Categoria:"
+              value={book.cod_categoria}
+              handlerChange={handleChangeCategory}
+              options={categories}
+            />
 
-              <Input
-                type="text"
-                name="descricao_livro"
-                id="descricao_livro"
-                placeholder="Digite a descrição do livro"
-                action={handleBook}
-              />
-            </div>
-            <div>
-              <h1>Categoria:</h1>
-              <Select
-                name="cod_categoria"
-                id="cod_categoria"
-                text=""
-                handlerChange={handleChangeCategory}
-                options={categories}
-              />
-            </div>
+            <Input
+              text="Descrição:"
+              type="text"
+              name="descricao_livro"
+              id="descricao_livro"
+              placeholder="Digite a descrição do livro"
+              action={handleBook}
+            />
           </div>
         </div>
       </form>
 
       {message && (
-        <div className={style.message}>
-          <p>{message}</p>
-          <button
-            onClick={() => {
-              setMessage("");
-              navigate("/listBook");
-            }}
-          >
-            {" "}
-            OK{" "}
-          </button>
-        </div>
+        // <div className={style.message}>
+        //   <p>{message}</p>
+        //   <button
+        //     onClick={() => {
+        //       setMessage("");
+        //       navigate("/listBook");
+        //     }}
+        //   >
+        //     {" "}
+        //     OK{" "}
+        //   </button>
+        // </div>
+        <MessageAlert 
+          message={message}
+          onClick={() => setMessage('')}
+        />
+
       )}
     </section>
   );

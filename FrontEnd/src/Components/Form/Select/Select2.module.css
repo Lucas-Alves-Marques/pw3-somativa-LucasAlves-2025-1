@@ -1,0 +1,80 @@
+.form_control{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: start;
+}
+
+.form_control label{
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #b88553;
+}
+
+.select{
+
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: #c9a581 1px solid;
+    position: relative;
+    gap: 5px;
+    
+    
+}
+
+.select p{
+
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.select svg{
+
+    font-size: x-large;
+    color: #bd8650;
+    transition: 0.4s;
+
+}
+
+.openIcon{
+
+    transform: rotate(180deg);
+
+}
+
+.comboBox{
+
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 19.4rem;
+    background-color: #1d1d1d;
+    border: 1px solid #c9a581;
+    border-radius: 5px;
+    z-index: 100;
+    padding: 5px;
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.comboBox p{
+
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+
+}
+
+.comboBox p:hover{
+
+    background-color: rgba(255, 255, 255, 0.10);
+
+}

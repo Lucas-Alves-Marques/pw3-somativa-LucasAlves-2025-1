@@ -1,6 +1,6 @@
 import { GiOpenBook as IconBook } from "react-icons/gi";
-import { Link } from "react-router-dom";
 import { FaList as IconList } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import React from "react";
 

@@ -1,25 +1,23 @@
 .form_control{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2em;
+    gap: 10px;
     text-align: start;
 }
 
 .form_control label{
-    padding: .7em;
-    border: none;
-    color: #ffffff;
-    font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #b88553;
 }
 
 .form_control select{
-    width: 100%;
-    padding: 10px 5px;
-    border-radius: 0;
+    padding: 10px;
+    border-radius: 5px;
     border: none;
-    background-color: #ffffff;
-    border-radius: 10px;
-    text-align: start;
+    background-color: transparent;
+    border: #c9a581 1px solid;
+    color: white;
 }
 
 .form_control select option{

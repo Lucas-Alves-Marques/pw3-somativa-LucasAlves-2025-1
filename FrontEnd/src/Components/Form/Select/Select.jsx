@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import style from "./Select.module.css";
 
 function Select({ text, name, id, handlerChange, options, value }) {
-  useEffect(() => {
-    console.log(options);
-  }, [options]);
 
   return (
     <div className={style.form_control}>
