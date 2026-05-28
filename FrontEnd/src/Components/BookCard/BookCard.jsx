@@ -1,21 +1,21 @@
-import Button from '../Form/ButtonLink/ButtonLink'
-import style from './BookCard.module.css'
+import Button from "../Form/ButtonLink/ButtonLink";
+import style from "./BookCard.module.css";
 
-const BookCard = ({cod_livro, nome_livro, autor_livro, img_livro})=>{
-    return(
-        
-        <div className={style.bookCard}>
+const BookCard = ({ book }) => {
+  return (
+    <div className={style.bookCard}>
+      <div className={style.imgBook}>
+      </div>
+      <div className={style.info}>
+        <h3 className={style.titulo}>
+            
+            {book.nome_livro.substring(0,12)}...
+            
+            </h3>
+        <p className={style.autor}>{book.autor_livro.substring(0,10)}</p>
+      </div>
+    </div>
+  );
+};
 
-            <h3 className={style.titulo}>{nome_livro}</h3>
-            <p className={style.autor}>{autor_livro}</p>
-            <img src={img_livro}/>
-            <Button
-                label='DETALHES'
-                router={`/details/`} 
-                cod_livro={cod_livro}/>
-        </div>
-        
-    )
-}
-
-export default BookCard
+export default BookCard;

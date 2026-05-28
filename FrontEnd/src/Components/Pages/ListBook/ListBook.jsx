@@ -1,90 +1,88 @@
-import React from "react";
-import style from './ListBook.module.css';
-import { useState, useEffect } from "react";
-import Style from './ListBook.module.css'
-
-import ladraoRaios from '../../../assets/Ladrao_de_Raios.jpg';
+import Conteiner from "../../Layout/Container/ContainerBook";
+import { LineTitle } from "../CreateBook/LineTitle/LineTitle";
+import { IoLibrary as IconLibrary } from "react-icons/io5";
 import BookCard from "../../BookCard/BookCard";
-
-import Conteiner from '../../Layout/Container/ContainerBook'
-
+import { useState, useEffect } from "react";
+import style from "./ListBook.module.css";
 
 const ListBook = () => {
+  const [books, setBooks] = useState([]);
 
-    const [books, setBooks] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
+  const listBooks = () => {
+    fetch("http://localhost:5000/listagemLivros", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Conten-Type": "application/json",
+        "Access-Control-Allow-Oringins": "*",
+        "Access-Control-Allow-Headers": "*"
+      }
+    })
+      .then(resp => resp.json())
+      .then(bookData => {
+        setBooks(bookData.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-        fetch('http://localhost:5000/listagemLivros', {
+  const listCategories = () => {
 
-            method: 'GET',
-            mode: 'cors',
-            headers: {
+    fetch("http://127.0.0.1:5000/listagemCategorias", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*"
+      }
+    })
+      .then(resp => resp.json())
+      .then(categories => {
+        setCategories(categories.data);
+      })
+      .catch(erro => {
+        console.log("Erro: " + erro);
+      });
 
-                'Conten-Type': 'application/json',
-                'Access-Control-Allow-Oringins': '*',
-                'Access-Control-Allow-Headers': '*'
+  };
 
-            }
+  useEffect(() => {
 
-        }).then((resp) => resp.json())
-            .then((bookData) => {
+    listBooks();
 
-                setBooks(...books, bookData.data)
+    listCategories();
 
-                // console.log(bookData.data)
+  }, []);
 
+  return (
+    <section className={style.list_book_container}>
+      <div className={style.main}>
+        <header>
+          <div className={style.title}>
+            <IconLibrary />
+            <h1>Biblioteca</h1>
+          </div>
+          <LineTitle />
+        </header>
+        <div className={style.bookCase}>
 
-            }).catch((err) => { console.log(err) });
+          {categories.map(categorie => (
 
-    }, []);
+            <Conteiner  
+              key={categorie.cod_categoria}
+              books={books}
+              categorie={categorie}
+            />
 
-    return (
+          ))}
 
-        <>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-            {books.length >= 1 ?
-
-
-                <section className={Style.body}>
-
-                    <h1>LIVROS CADASTRADOS</h1>
-
-                    <Conteiner>
-
-                        {books.map((book) => (
-
-                            <BookCard
-                                cod_livro={book.cod_livro}
-                                nome_livro={book.nome_livro}
-                                autor_livro={book.autor_livro}
-                                img_livro={ladraoRaios}
-                                key={book.cod_livro} />
-                        ))
-
-                        }
-
-                    </Conteiner>
-
-
-                </section>
-
-                :
-
-                <section className={Style.NotBook}>
-
-                    <h1>NÃO HÁ LIVROS CADASTRADOS</h1>
-
-                </section>
-
-
-
-            }
-
-        </>
-
-
-    )
-}
-
-export default ListBook
+export default ListBook;

@@ -1,29 +1,69 @@
-.body {
-    text-align: center;
+.list_book_container{
 
-}
-
-.body h1 {
-    margin: 2vh 0;
-    color: white;
-    font-size: 5vh;
-}
-
-.NotBook {
     display: flex;
-    flex: 1;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    flex: 1;
+
 }
 
-.NotBook h1 {
+.main{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    background: #0d1b2ab4;
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem 1rem 2rem 2rem;
+    border: #c9a581 1px solid;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0);
     color: white;
-    font-size: 4vh;
-    background-color: rgba(6, 50, 80, 0.63);
-    backdrop-filter: blur(2px);
-    padding: 5vh;
-    border-radius: 2vh;
-    border: 0.5vh solid white;
-    width: 40vh;
-    text-align: center;
+
+}
+
+.main header{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.main header svg{
+
+    font-size: xx-large;
+    color: #b88553;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+}
+
+.title h1{
+
+    font-weight: 100;
+
+}
+
+.bookCase{
+
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: auto;
+    max-height: 23rem;
+    padding-right: 1rem;
+
+
 }
