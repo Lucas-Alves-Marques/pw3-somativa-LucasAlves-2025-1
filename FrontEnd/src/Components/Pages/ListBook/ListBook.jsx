@@ -22,7 +22,11 @@ const ListBook = () => {
     })
       .then(resp => resp.json())
       .then(bookData => {
-        setBooks(bookData.data);
+        const booksDB = bookData.data;
+
+        booksDB.sort((a, b) => a.nome_livro.localeCompare(b.nome_livro));
+
+        setBooks(booksDB);
       })
       .catch(err => {
         console.log(err);
@@ -30,7 +34,6 @@ const ListBook = () => {
   };
 
   const listCategories = () => {
-
     fetch("http://127.0.0.1:5000/listagemCategorias", {
       method: "GET",
       headers: {
@@ -46,15 +49,12 @@ const ListBook = () => {
       .catch(erro => {
         console.log("Erro: " + erro);
       });
-
   };
 
   useEffect(() => {
-
     listBooks();
 
     listCategories();
-
   }, []);
 
   return (
@@ -68,17 +68,9 @@ const ListBook = () => {
           <LineTitle />
         </header>
         <div className={style.bookCase}>
-
           {categories.map(categorie => (
-
-            <Conteiner  
-              key={categorie.cod_categoria}
-              books={books}
-              categorie={categorie}
-            />
-
+            <Conteiner key={categorie.cod_categoria} books={books} categorie={categorie} />
           ))}
-
         </div>
       </div>
     </section>

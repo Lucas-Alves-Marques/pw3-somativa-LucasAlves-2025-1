@@ -64,6 +64,26 @@
     overflow: auto;
     max-height: 23rem;
     padding-right: 1rem;
+    padding-bottom: 1rem;
 
 
 }
+
+.bookCase::-webkit-scrollbar{
+    width: 8px;
+}
+
+.bookCase::-webkit-scrollbar-track{
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+.bookCase::-webkit-scrollbar-thumb{
+    background: #947351;
+    border-radius: 10px;
+}
+
+.bookCase::-webkit-scrollbar-thumb:hover{
+    background: #5f4933;
+}
+

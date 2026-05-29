@@ -18,15 +18,23 @@
 
 .main{
 
-    /* height: 13rem; */
+    max-height: 16rem;
     border: 1px #e9b37d79 solid;
     border-radius: 10px;
     box-shadow: 7px 7px 10px rgb(0, 0, 0);
     background: #07101ab4;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: start;
     padding: 1rem;
-    gap: 1rem
+    gap: 10px;
+    overflow-y: auto;
+
+}
+
+.main::-webkit-scrollbar{
+
+    background-color: transparent;
+    width: 0;
 
 }
