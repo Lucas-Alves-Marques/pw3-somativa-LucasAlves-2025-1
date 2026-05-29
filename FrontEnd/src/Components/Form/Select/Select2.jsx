@@ -27,7 +27,7 @@ export const Select2 = ({ text, name, handlerChange, options, value }) => {
         <p name={name}>{nameCat || "Selecione uma Categoria"}</p>
         <ArrowIcon className={openBox && style.openIcon} />
         <div className={`${style.comboBox} ${!openBox && style.hidden}`}>
-          {options.map((opt, index) => (
+          {options?.map((opt, index) => (
             <p
               key={index}
               onClick={() => {

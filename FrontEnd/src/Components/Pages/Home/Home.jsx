@@ -3,6 +3,7 @@ import { FaList as IconList } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import React from "react";
+import { ButtonLink2 } from "../../Form/ButtonLink/ButtonLink2";
 
 const Home = () => {
   return (
@@ -15,7 +16,7 @@ const Home = () => {
           </h1>
         </div>
         <div className={styles.buttons}>
-          <Link to="/newBook">
+          {/* <Link to="/newBook">
             <div className={styles.register}>
               <IconBook />
               <p>Cadastrar</p>
@@ -26,7 +27,9 @@ const Home = () => {
               <IconList />
               <p>Biblioteca</p>
             </div>
-          </Link>
+          </Link> */}
+          <ButtonLink2 text="Cadastrar" link="/newBook" icon={<IconBook />} type="full" />
+          <ButtonLink2 text="Biblioteca" link="/listBook" icon={<IconList />} type="void" />
         </div>
       </div>
       <img className="book_home" src="./book_home.png" alt="" />

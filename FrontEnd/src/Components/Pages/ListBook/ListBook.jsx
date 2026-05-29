@@ -1,6 +1,7 @@
-import Conteiner from "../../Layout/Container/ContainerBook";
 import { LineTitle } from "../CreateBook/LineTitle/LineTitle";
+import Conteiner from "../../Layout/Container/ContainerBook";
 import { IoLibrary as IconLibrary } from "react-icons/io5";
+import { GiOpenBook as IconBook } from "react-icons/gi";
 import BookCard from "../../BookCard/BookCard";
 import { useState, useEffect } from "react";
 import style from "./ListBook.module.css";
@@ -22,11 +23,13 @@ const ListBook = () => {
     })
       .then(resp => resp.json())
       .then(bookData => {
-        const booksDB = bookData.data;
-
-        booksDB.sort((a, b) => a.nome_livro.localeCompare(b.nome_livro));
-
-        setBooks(booksDB);
+        if (bookData.data) {
+          const booksDB = bookData.data;
+          booksDB.sort((a, b) => a.nome_livro.localeCompare(b.nome_livro));
+          setBooks(booksDB);
+        } else {
+          setBooks([]);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -44,7 +47,7 @@ const ListBook = () => {
     })
       .then(resp => resp.json())
       .then(categories => {
-        setCategories(categories.data);
+        if (categories.data) setCategories(categories.data);
       })
       .catch(erro => {
         console.log("Erro: " + erro);
@@ -68,9 +71,20 @@ const ListBook = () => {
           <LineTitle />
         </header>
         <div className={style.bookCase}>
-          {categories.map(categorie => (
-            <Conteiner key={categorie.cod_categoria} books={books} categorie={categorie} />
-          ))}
+          {categories.length === 0 ? (
+            <div className={style.notBook}>
+            <IconBook />
+
+                <h2>Cadaste seu primeiro livro para exibir o catálogo</h2>
+
+                <button>Cadastra</button>
+
+            </div>
+          ) : (
+            categories?.map(categorie => (
+              <Conteiner key={categorie.cod_categoria} books={books} categorie={categorie} />
+            ))
+          )}
         </div>
       </div>
     </section>
